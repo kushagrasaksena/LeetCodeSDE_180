@@ -1,0 +1,51 @@
+-----------------------------------------------PROBLEM-------------------------------------------
+
+Given an array of integers, 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.
+
+Find all the elements that appear twice in this array.
+
+Could you do it without extra space and in O(n) runtime?
+
+Example:
+Input:
+[4,3,2,7,8,2,3,1]
+
+Output:
+[2,3]
+
+https://leetcode.com/problems/find-all-duplicates-in-an-array/
+
+---------------------------------------------MY SOLUTION-----------------------------------------
+
+vector<int> findDuplicates(vector<int>& nums) 
+	{
+        int n = nums.size();
+        int a[n+1];
+        vector<int> dups;
+        memset(a,0,sizeof(a));
+        for(int i=0;i<n;i++)
+        {
+            a[nums[i]]++;
+            if(a[nums[i]]>1)
+                dups.push_back(nums[i]);;
+        }
+        return dups;
+
+    }
+
+---------------------------------------MOST OPTIMIZED SOLUTION-----------------------------------
+
+vector<int> findDuplicates(vector<int>& nums) 
+	{
+       
+        int n = nums.size();
+        vector<int> dups;
+        for(int i : nums)
+        {
+            int ind = abs(i)-1;
+            if(nums[ind] < 0)
+                dups.push_back(abs(i));
+            nums[ind] = -nums[ind]; 
+        }
+        return dups;
+    }

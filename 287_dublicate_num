@@ -1,0 +1,50 @@
+
+-----------------------------------------------PROBLEM-------------------------------------------
+    Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.
+
+-----Example 1:
+
+    Input: [1,3,4,2,2]
+    Output: 2
+
+-----Example 2:
+
+    Input: [3,1,3,4,2]
+    Output: 3
+
+----------------------------------------------MY SOLUTION----------------------------------------
+  
+  int findDuplicate(vector<int>& nums) {
+  
+        int n = nums.size(),res;
+        int a[n+1];
+        memset(a,0,sizeof(a));
+        for(int i=0;i<n;i++)
+        {
+            a[nums[i]]++;
+            if(a[nums[i]]>1)
+                res = nums[i];
+        }
+        return res;
+    }
+
+---------------------------------------MOST OPTIMIZED SOLUTION-----------------------------------
+
+int findDuplicate(vector<int>& nums) {
+
+        int slow = nums[0];
+        int fast = nums[0];
+        do {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        }while(slow!=fast);
+        
+        fast = nums[0];
+        
+        while(slow!=fast)
+        {
+            slow=nums[slow];
+            fast=nums[fast];
+        }
+        return slow;
+    }
