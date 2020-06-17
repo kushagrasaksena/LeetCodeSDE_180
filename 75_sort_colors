@@ -1,0 +1,39 @@
+-----------------------------------------------PROBLEM-------------------------------------------
+
+Given an array A[] consisting 0s, 1s and 2s. The task is to write a function that sorts the given array. The functions should put all 0s first, then all 1s and all 2s in last.
+
+------Example 1
+	Input: [2,0,2,1,1,0]
+	Output: [0,0,1,1,2,2]
+
+https://leetcode.com/problems/sort-colors/
+
+---------------------------------------------MY SOLUTION-----------------------------------------
+
+ void sortColors(vector<int>& nums) {
+        
+        int n=nums.size(),low=0,mid=0;
+        int high=n-1;
+        while(mid<=high)
+        {
+            if(nums[mid] == 0)
+            {
+                swap(nums[mid],nums[low]);
+                low++,mid++;
+            }
+            else if(nums[mid]==1)
+            {
+                mid++;
+            }
+            else
+            {
+                swap(nums[mid],nums[high]);
+                high--;
+            }
+        }
+        // sort(nums.begin(),nums.end());   
+    }
+
+---------------------------------------MOST OPTIMIZED SOLUTION-----------------------------------
+
+Same as i solved it earlier!!!

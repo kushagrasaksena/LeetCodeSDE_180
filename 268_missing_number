@@ -1,0 +1,57 @@
+-----------------------------------------------PROBLEM-------------------------------------------
+
+Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
+
+------Example 1:
+
+Input: [3,0,1]
+Output: 2
+
+------Example 2:
+
+Input: [9,6,4,2,3,5,7,0,1]
+Output: 8
+
+https://leetcode.com/problems/missing-number/
+
+---------------------------------------------MY SOLUTION-----------------------------------------
+
+	int missingNumber(vector<int>& nums) {
+        //brute force
+        int n = nums.size();
+        int a[n+1],ans;
+        memset(a,0,sizeof(a));
+        for(int i : nums)
+        {
+            a[i]++;
+        }
+        for(int i=0;i<n+1;i++)
+            if(a[i]==0)
+                ans=i;
+        return ans;
+    }
+---------------------------------------MOST OPTIMIZED SOLUTION-----------------------------------
+
+int missingNumber(vector<int>& nums) 
+{       
+        //sum method
+        int acsum=0;
+        int n = nums.size();
+        int exsum = n*(n+1)/2;
+        for(int i : nums)
+            acsum+=i;
+        
+        return exsum-acsum;
+    }
+
+
+    int missingNumber(vector<int>& nums) 
+    {
+
+        //bit manipulation
+        int n = nums.size(),xo=n;
+        for(int i=0;i<n;i++)
+            xo ^= i^nums[i];
+        
+        return xo;
+    }
